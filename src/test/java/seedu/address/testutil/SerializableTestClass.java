@@ -69,4 +69,5 @@ public class SerializableTestClass {
     public HashMap<Integer, String> getMapOfIntegerToString() {
         return mapOfIntegerToString;
     }
+
 }

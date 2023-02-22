@@ -105,4 +105,5 @@ public class CollectionUtilTest {
     private void assertNullPointerExceptionNotThrown(Collection<?> collection) {
         requireAllNonNull(collection);
     }
+
 }
