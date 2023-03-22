@@ -2,11 +2,7 @@ package seedu.library.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.*;
 import static seedu.library.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -34,6 +30,8 @@ public class CommandTestUtil {
     public static final String VALID_GENRE_BOB = "Bob";
     public static final String VALID_AUTHOR_AMY = "Block 312, Amy Street 1";
     public static final String VALID_AUTHOR_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_URL_AMY = "https://www.abc.com";
+    public static final String VALID_URL_BOB = "https://www.def.com";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -45,6 +43,8 @@ public class CommandTestUtil {
     public static final String GENRE_DESC_BOB = " " + PREFIX_GENRE + VALID_GENRE_BOB;
     public static final String AUTHOR_DESC_AMY = " " + PREFIX_AUTHOR + VALID_AUTHOR_AMY;
     public static final String AUTHOR_DESC_BOB = " " + PREFIX_AUTHOR + VALID_AUTHOR_BOB;
+    public static final String URL_DESC_AMY = " " + PREFIX_URLLINK + VALID_URL_AMY;
+    public static final String URL_DESC_BOB = " " + PREFIX_URLLINK + VALID_URL_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -52,6 +52,7 @@ public class CommandTestUtil {
     public static final String INVALID_PROGRESS_DESC = " " + PREFIX_PROGRESS + "911*"; // '*' not allowed in progress
     public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE;
     public static final String INVALID_AUTHOR_DESC = " " + PREFIX_AUTHOR; // empty string not allowed for addresses
+    public static final String INVALID_URL_DESC = "abc.com" + PREFIX_AUTHOR; // need protocol in fron e.g https://
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -63,6 +64,7 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_AMY)
                 .withProgress(VALID_PROGRESS_AMY).withGenre(VALID_GENRE_AMY).withAuthor(VALID_AUTHOR_AMY)
+      //          .withUrl(VALID_URL_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_BOB)
                 .withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_BOB).withAuthor(VALID_AUTHOR_BOB)

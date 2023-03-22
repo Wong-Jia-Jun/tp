@@ -10,6 +10,7 @@ import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.Model;
 import seedu.library.model.bookmark.Bookmark;
 
+
 /**
  * Deletes a bookmark identified using it's displayed index from the library.
  */

@@ -9,10 +9,7 @@ import java.util.Set;
 import seedu.library.commons.core.index.Index;
 import seedu.library.commons.util.StringUtil;
 import seedu.library.logic.parser.exceptions.ParseException;
-import seedu.library.model.bookmark.Author;
-import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Progress;
-import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.*;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -93,6 +90,20 @@ public class ParserUtil {
             throw new ParseException(Genre.MESSAGE_CONSTRAINTS);
         }
         return new Genre(trimmedGenre);
+    }
+    /**
+     * Parses a {@code String url} into an {@code UrlLink}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code url} is invalid.
+     */
+    public static UrlLink parseUrlLink(String url) throws ParseException {
+        requireNonNull(url);
+        String trimmedUrl = url.trim();
+        if (!UrlLink.isValidUrlLink(trimmedUrl)) {
+            throw new ParseException(UrlLink.MESSAGE_CONSTRAINTS);
+        }
+        return new UrlLink(trimmedUrl);
     }
 
     /**

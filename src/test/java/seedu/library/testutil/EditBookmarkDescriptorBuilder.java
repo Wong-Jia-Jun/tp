@@ -5,11 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.library.logic.commands.EditCommand.EditBookmarkDescriptor;
-import seedu.library.model.bookmark.Author;
-import seedu.library.model.bookmark.Bookmark;
-import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Progress;
-import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.*;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -68,6 +64,10 @@ public class EditBookmarkDescriptorBuilder {
      */
     public EditBookmarkDescriptorBuilder withAuthor(String author) {
         descriptor.setAuthor(new Author(author));
+        return this;
+    }
+    public EditBookmarkDescriptorBuilder withUrl(String url) {
+        descriptor.setUrl(new UrlLink(url));
         return this;
     }
 

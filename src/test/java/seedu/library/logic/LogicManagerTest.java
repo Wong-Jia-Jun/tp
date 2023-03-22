@@ -3,10 +3,7 @@ package seedu.library.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.library.commons.core.Messages.MESSAGE_INVALID_BOOKMARK_DISPLAYED_INDEX;
 import static seedu.library.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.library.logic.commands.CommandTestUtil.AUTHOR_DESC_AMY;
-import static seedu.library.logic.commands.CommandTestUtil.GENRE_DESC_AMY;
-import static seedu.library.logic.commands.CommandTestUtil.PROGRESS_DESC_AMY;
-import static seedu.library.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
+import static seedu.library.logic.commands.CommandTestUtil.*;
 import static seedu.library.testutil.Assert.assertThrows;
 import static seedu.library.testutil.TypicalBookmarks.AMY;
 
@@ -81,6 +78,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + PROGRESS_DESC_AMY + GENRE_DESC_AMY
                 + AUTHOR_DESC_AMY;
+        //+ URL_DESC_AMY
         Bookmark expectedBookmark = new BookmarkBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addBookmark(expectedBookmark);

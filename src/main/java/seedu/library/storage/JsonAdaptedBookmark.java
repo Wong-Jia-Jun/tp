@@ -10,11 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.library.commons.exceptions.IllegalValueException;
-import seedu.library.model.bookmark.Author;
-import seedu.library.model.bookmark.Bookmark;
-import seedu.library.model.bookmark.Genre;
-import seedu.library.model.bookmark.Progress;
-import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.*;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -28,6 +24,7 @@ class JsonAdaptedBookmark {
     private final String progress;
     private final String genre;
     private final String author;
+    private final String url;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -36,11 +33,13 @@ class JsonAdaptedBookmark {
     @JsonCreator
     public JsonAdaptedBookmark(@JsonProperty("title") String title, @JsonProperty("progress") String progress,
                                @JsonProperty("genre") String genre, @JsonProperty("author") String author,
+                               @JsonProperty("url") String url,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.progress = progress;
         this.genre = genre;
         this.author = author;
+        this.url = url;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,9 +53,11 @@ class JsonAdaptedBookmark {
         progress = source.getProgress().value;
         genre = source.getGenre().value;
         author = source.getAuthor().value;
+        url = source.getUrl().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        //TODO
     }
 
     /**
@@ -102,9 +103,13 @@ class JsonAdaptedBookmark {
             throw new IllegalValueException(Author.MESSAGE_CONSTRAINTS);
         }
         final Author modelAuthor = new Author(author);
+        if (!UrlLink.isValidUrlLink(url)) {
+            throw new IllegalValueException(UrlLink.MESSAGE_CONSTRAINTS);
+        }
+        final UrlLink modelUrl = new UrlLink(url);
 
         final Set<Tag> modelTags = new HashSet<>(bookmarkTags);
-        return new Bookmark(modelTitle, modelProgress, modelGenre, modelAuthor, modelTags);
+        return new Bookmark(modelTitle, modelProgress, modelGenre, modelAuthor, modelUrl, modelTags);
     }
 
 }

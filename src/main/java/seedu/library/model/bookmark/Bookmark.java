@@ -22,17 +22,19 @@ public class Bookmark {
 
     // Data fields
     private final Author author;
+    private UrlLink url;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Bookmark(Title title, Progress progress, Genre genre, Author author, Set<Tag> tags) {
-        requireAllNonNull(title, progress, genre, author, tags);
+    public Bookmark(Title title, Progress progress, Genre genre, Author author, UrlLink url, Set<Tag> tags) {
+        requireAllNonNull(title, progress, genre, author, url, tags);
         this.title = title;
         this.progress = progress;
         this.genre = genre;
         this.author = author;
+        this.url = url;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +54,9 @@ public class Bookmark {
         return author;
     }
 
+    public UrlLink getUrl() {
+        return url;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -92,13 +97,14 @@ public class Bookmark {
                 && otherBookmark.getProgress().equals(getProgress())
                 && otherBookmark.getGenre().equals(getGenre())
                 && otherBookmark.getAuthor().equals(getAuthor())
+                && otherBookmark.getUrl().equals(getUrl())
                 && otherBookmark.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, progress, genre, author, tags);
+        return Objects.hash(title, progress, genre, author, url, tags);
     }
 
     @Override
@@ -110,7 +116,9 @@ public class Bookmark {
                 .append("; Genre: ")
                 .append(getGenre())
                 .append("; Author: ")
-                .append(getAuthor());
+                .append(getAuthor())
+                .append("; UrlLink: ")
+                .append((getUrl()));
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

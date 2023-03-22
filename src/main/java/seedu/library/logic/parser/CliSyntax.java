@@ -11,5 +11,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_PROGRESS = new Prefix("p/");
     public static final Prefix PREFIX_GENRE = new Prefix("g/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
-
+    public static final Prefix PREFIX_URLLINK = new Prefix("u/");
 }

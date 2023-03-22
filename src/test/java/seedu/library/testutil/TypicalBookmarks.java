@@ -10,6 +10,8 @@ import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.library.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_URL_AMY;
+import static seedu.library.logic.commands.CommandTestUtil.VALID_URL_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,11 +1,7 @@
 package seedu.library.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_AUTHOR;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_GENRE;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_PROGRESS;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.library.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.library.logic.parser.CliSyntax.*;
 import static seedu.library.model.Model.PREDICATE_SHOW_ALL_BOOKMARKS;
 
 import java.util.Collections;
@@ -24,6 +20,7 @@ import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.Genre;
 import seedu.library.model.bookmark.Progress;
 import seedu.library.model.bookmark.Title;
+import seedu.library.model.bookmark.UrlLink;
 import seedu.library.model.tag.Tag;
 
 /**
@@ -41,6 +38,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PROGRESS + "PROGRESS] "
             + "[" + PREFIX_GENRE + "GENRE] "
             + "[" + PREFIX_AUTHOR + "AUTHOR] "
+            + "[" + PREFIX_URLLINK + "URLLINK" + "]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PROGRESS + "Finished "
@@ -98,9 +96,10 @@ public class EditCommand extends Command {
         Progress updatedProgress = editBookmarkDescriptor.getProgress().orElse(bookmarkToEdit.getProgress());
         Genre updatedGenre = editBookmarkDescriptor.getGenre().orElse(bookmarkToEdit.getGenre());
         Author updatedAuthor = editBookmarkDescriptor.getAuthor().orElse(bookmarkToEdit.getAuthor());
+        UrlLink updatedUrl = editBookmarkDescriptor.getUrlLink().orElse(bookmarkToEdit.getUrl());
         Set<Tag> updatedTags = editBookmarkDescriptor.getTags().orElse(bookmarkToEdit.getTags());
 
-        return new Bookmark(updatedTitle, updatedProgress, updatedGenre, updatedAuthor, updatedTags);
+        return new Bookmark(updatedTitle, updatedProgress, updatedGenre, updatedAuthor, updatedUrl, updatedTags);
     }
 
     @Override
@@ -130,6 +129,7 @@ public class EditCommand extends Command {
         private Progress progress;
         private Genre genre;
         private Author author;
+        private UrlLink url;
         private Set<Tag> tags;
 
         public EditBookmarkDescriptor() {}
@@ -143,6 +143,7 @@ public class EditCommand extends Command {
             setProgress(toCopy.progress);
             setGenre(toCopy.genre);
             setAuthor(toCopy.author);
+            setUrl(toCopy.url);
             setTags(toCopy.tags);
         }
 
@@ -184,6 +185,13 @@ public class EditCommand extends Command {
         public Optional<Author> getAuthor() {
             return Optional.ofNullable(author);
         }
+        public void setUrl(UrlLink url) {
+            this.url = url;
+        }
+        public Optional<UrlLink> getUrlLink() {
+            return Optional.ofNullable(url);
+        }
+
 
         /**
          * Sets {@code tags} to this object's {@code tags}.
@@ -221,6 +229,7 @@ public class EditCommand extends Command {
                     && getProgress().equals(e.getProgress())
                     && getGenre().equals(e.getGenre())
                     && getAuthor().equals(e.getAuthor())
+                    && getUrlLink().equals(e.getUrlLink())
                     && getTags().equals(e.getTags());
         }
     }
